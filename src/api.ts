@@ -11,6 +11,9 @@ interface ScoreResponse {
   };
 }
 
+// リクエスト間の遅延用ユーティリティ
+const delay = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
+
 // 過去1年間のスコアを取得し、日付ごとのカウントを返す
 export const fetchPlayerHistory = async (playerId: string): Promise<Record<string, number>> => {
   const scores: Score[] = [];
@@ -19,17 +22,25 @@ export const fetchPlayerHistory = async (playerId: string): Promise<Record<strin
   const oneYearAgo = Math.floor(Date.now() / 1000) - 365 * 24 * 60 * 60;
   let keepFetching = true;
 
-  // 最大20ページまたは1年前のデータに到達するまで取得
-  while (keepFetching && page <= 20) {
+  // 1年前のデータに到達するまで取得
+  while (keepFetching) {
     try {
       const response = await fetch(
-        `https://api.beatleader.xyz/player/${playerId}/scores?sortBy=date&page=${page}&count=50`
+        `https://api.beatleader.xyz/player/${playerId}/scores?sortBy=date&page=${page}&count=100`
       );
+
+      // レート制限時はリトライ
+      if (response.status === 429) {
+        console.log("Rate limited, waiting 2 seconds...");
+        await delay(2000);
+        continue;
+      }
+
       if (!response.ok) break;
-      
+
       const json: ScoreResponse = await response.json();
       const newScores = json.data;
-      
+
       if (!newScores || newScores.length === 0) break;
 
       scores.push(...newScores);
@@ -40,6 +51,8 @@ export const fetchPlayerHistory = async (playerId: string): Promise<Record<strin
         keepFetching = false;
       } else {
         page++;
+        // レート制限を避けるため、リクエスト間に遅延を入れる
+        await delay(200);
       }
     } catch (e) {
       console.error("Fetch error:", e);
