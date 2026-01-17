@@ -1,0 +1,9 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* BeatLeaderのダークモード背景に合わせるための調整 */
+#my-extension-root {
+  color: #fff;
+  width: 100%;
+}
