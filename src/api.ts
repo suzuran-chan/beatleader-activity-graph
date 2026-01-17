@@ -66,14 +66,9 @@ export const fetchPlayerHistory = async (playerId: string): Promise<Record<strin
   scores.forEach(score => {
     // Unix timestamp (秒) をミリ秒に変換
     const date = new Date(Number(score.timepost) * 1000);
-    // 日本時間での日付取得を簡易的に行う場合
-    const jstDate = new Date(date.toLocaleString('en-US', { timeZone: 'Asia/Tokyo' }));
-    
-    const yyyy = jstDate.getFullYear();
-    const mm = String(jstDate.getMonth() + 1).padStart(2, '0');
-    const dd = String(jstDate.getDate()).padStart(2, '0');
-    const key = `${yyyy}-${mm}-${dd}`;
-    
+    // ユーザーのローカルタイムで日付を取得 (YYYY-MM-DD形式)
+    const key = date.toLocaleDateString('en-CA');
+
     dailyCounts[key] = (dailyCounts[key] || 0) + 1;
   });
 
