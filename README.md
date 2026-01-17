@@ -43,8 +43,8 @@ npm run build
 
 ## 使い方
 
-1. [BeatLeader](https://www.beatleader.xyz) にアクセス
-2. 任意のプレイヤーのプロフィールページを開く（例: `https://www.beatleader.xyz/u/xxxx`）
+1. [BeatLeader](https://www.beatleader.com) にアクセス
+2. 任意のプレイヤーのプロフィールページを開く（例: `https://www.beatleader.com/u/xxxx`）
 3. チャートセクションに「**Activity**」ボタンが追加されています
 4. 「Activity」ボタンをクリックすると年間プレイ履歴グラフが表示されます
 
