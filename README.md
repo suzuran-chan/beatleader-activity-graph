@@ -17,7 +17,7 @@ BeatLeaderのプロフィールページに、GitHubのようなアクティビ�
 
 ```bash
 # リポジトリをクローン
-git clone https://github.com/your-username/beatleader-activity-graph.git
+git clone https://github.com/suzuran-chan/beatleader-activity-graph.git
 cd beatleader-activity-graph
 
 # 依存関係をインストール
