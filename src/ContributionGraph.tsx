@@ -169,7 +169,7 @@ const ContributionGraph: React.FC<ContributionGraphProps> = ({ playerId, onDateC
   return (
     <div className="w-full">
       <h2 className="text-white text-lg font-bold mb-4">Yearly Play History</h2>
-      <div className="w-full bg-[#161616] p-6 rounded-lg flex flex-col justify-center items-center">
+      <div className="w-full bg-[#161616] p-6 rounded-lg flex flex-col justify-center items-center mb-4">
         <div className="flex flex-col gap-[3px]">
           {/* 月ラベル行 */}
           <div className="flex flex-row gap-[3px] h-[16px] items-center">
@@ -213,6 +213,36 @@ const ContributionGraph: React.FC<ContributionGraphProps> = ({ playerId, onDateC
             ))}
           </div>
         </div>
+      </div>
+      {/* 凡例 */}
+      <div className="flex flex-row items-center justify-end mt-3 gap-[3px]">
+        <span className="text-[11px] text-gray-400 mr-1">Less</span>
+        <div
+          className="w-[14px] h-[14px] rounded-[2px]"
+          style={{ backgroundColor: '#2a2a2a' }}
+          title="0 plays"
+        />
+        <div
+          className="w-[14px] h-[14px] rounded-[2px]"
+          style={{ backgroundColor: '#166534' }}
+          title="1-2 plays"
+        />
+        <div
+          className="w-[14px] h-[14px] rounded-[2px]"
+          style={{ backgroundColor: '#15803d' }}
+          title="3-4 plays"
+        />
+        <div
+          className="w-[14px] h-[14px] rounded-[2px]"
+          style={{ backgroundColor: '#16a34a' }}
+          title="5-9 plays"
+        />
+        <div
+          className="w-[14px] h-[14px] rounded-[2px]"
+          style={{ backgroundColor: '#22c55e' }}
+          title="10+ plays"
+        />
+        <span className="text-[11px] text-gray-400 ml-1">More</span>
       </div>
     </div>
   );

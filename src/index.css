@@ -1,6 +1,5 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+@source "../src/**/*.{js,ts,jsx,tsx}";
 
 /* BeatLeaderのダークモード背景に合わせるための調整 */
 #my-extension-root {
